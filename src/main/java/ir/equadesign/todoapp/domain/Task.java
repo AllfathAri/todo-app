@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 public class Task extends BaseEntity {
 
-    private Boolean isDone = false;
+    private Boolean isDone;
     private String details;
 
     @ManyToOne

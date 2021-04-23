@@ -51,15 +51,17 @@
                 <td th:text="${task.id}">1</td>
                 <td th:text="${task.details}">Finish The Project</td>
                 <td th:text="${task.category}">All</td>
-                <td th:switch="${task.isDone}">
-                    <p th:case='true'>Yes</p>
-                    <p th:case='false'>No</p>
+                <td th:text="${task.isDone}? 'Yes': 'No'">
+
                 </td>
                 <td th:if="${task.isDone}">
+                    <a href="" class="btn btn-sm btn-warning me-2" aria-label="Mark as done"><i class="fas fa-undo"></i></a>
+                    <a href="" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i class="fas fa-trash"></i></a>
+                </td>
+                <td th:if="${!task.isDone}">
                     <a href="" class="btn btn-sm btn-success me-2" aria-label="Mark as done"><i class="fas fa-check"></i></a>
                     <a href="" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i class="fas fa-trash"></i></a>
                 </td>
-
             </tr>
             </tbody>
         </table>

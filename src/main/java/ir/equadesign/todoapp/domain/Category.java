@@ -30,6 +30,8 @@ public class Category extends BaseEntity {
 
     public Category addTasks(Task... tasks){
         for (Task task : tasks) {
+            task.setCategory(this);
+            this.getTasks().add(task);
         }
         return this;
     }
