@@ -2,6 +2,7 @@ package ir.equadesign.todoapp.web.controllers;
 
 import ir.equadesign.todoapp.repositories.CategoryRepository;
 import ir.equadesign.todoapp.repositories.TaskRepository;
+import ir.equadesign.todoapp.services.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,10 @@ import java.util.Set;
 @RequestMapping({"/", "", "index", "/index.html"})
 public class IndexController {
 
-    private final TaskRepository taskRepository;
+    private final TaskService taskService;
 
     @GetMapping
     public ModelAndView index() {
-        return new ModelAndView("index").addObject("tasks", taskRepository.findAll());
+        return new ModelAndView("index").addObject("tasks", taskService.findAll());
     }
 }
