@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script defer src="js/fontawesome-all.min.js"></script>
+    <style>
+
+        body {
+            background-image: url("./static/img/background.jpg");
+            position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light py-2 border-bottom sticky-top">
+    <div class="container">
+        <a href="#" class="navbar-brand"><i class="fas fa-check me-2"></i>Todo App</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="col-12 bg-light mt-5 rounded-2 p-3 ">
+        <div class="mb-3 d-flex">
+            <form action="" class="input-group">
+                <span class="input-group-text " id="before">#</span>
+                <input type="text" class="form-control" placeholder="Write Your New Task" aria-label="Input" aria-describedby="before">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+        <table class="table table-striped text-center">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Task</th>
+                <th>Category</th>
+                <th>Is It Done?</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Finish The Project</td>
+                <td>All</td>
+                <td>False</td>
+                <td>
+                    <a href="" class="btn btn-sm btn-success me-2" aria-label="Mark as done"><i class="fas fa-check"></i></a>
+                    <a href="" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Finish The Project</td>
+                <td>All</td>
+                <td>False</td>
+                <td>
+                    <a href="" class="btn btn-sm btn-warning me-2" aria-label="Mark as done"><i class="fas fa-undo-alt"></i></a>
+                    <a href="" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Finish The Project</td>
+                <td>All</td>
+                <td>False</td>
+                <td>
+                    <a href="" class="btn btn-sm btn-success me-2" aria-label="Mark as done"><i class="fas fa-check"></i></a>
+                    <a href="" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
