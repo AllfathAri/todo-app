@@ -3,7 +3,6 @@ package ir.equadesign.todoapp.domain;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,9 +30,12 @@ public class Category extends BaseEntity {
 
     public Category addTasks(Task... tasks){
         for (Task task : tasks) {
-            task.setCategory(this);
-            this.tasks.add(task);
         }
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return category.toString();
     }
 }

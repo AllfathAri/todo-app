@@ -9,7 +9,7 @@
     <style>
 
         body {
-            background-image: url("./static/img/background.jpg");
+            background-image: url("/img/background.jpg");
             position: center;
             background-size: cover;
             background-attachment: fixed;
@@ -46,35 +46,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Finish The Project</td>
-                <td>All</td>
-                <td>False</td>
-                <td>
+
+            <tr th:each="task : ${tasks}">
+                <td th:text="${task.id}">1</td>
+                <td th:text="${task.details}">Finish The Project</td>
+                <td th:text="${task.category}">All</td>
+                <td th:switch="${task.isDone}">
+                    <p th:case='true'>Yes</p>
+                    <p th:case='false'>No</p>
+                </td>
+                <td th:if="${task.isDone}">
                     <a href="" class="btn btn-sm btn-success me-2" aria-label="Mark as done"><i class="fas fa-check"></i></a>
                     <a href="" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i class="fas fa-trash"></i></a>
                 </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Finish The Project</td>
-                <td>All</td>
-                <td>False</td>
-                <td>
-                    <a href="" class="btn btn-sm btn-warning me-2" aria-label="Mark as done"><i class="fas fa-undo-alt"></i></a>
-                    <a href="" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i class="fas fa-trash"></i></a>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Finish The Project</td>
-                <td>All</td>
-                <td>False</td>
-                <td>
-                    <a href="" class="btn btn-sm btn-success me-2" aria-label="Mark as done"><i class="fas fa-check"></i></a>
-                    <a href="" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i class="fas fa-trash"></i></a>
-                </td>
+
             </tr>
             </tbody>
         </table>
