@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,14 +17,13 @@ public class Category extends BaseEntity {
 
     private String category;
 
-    @ManyToMany(mappedBy = "categories")
+    @OneToMany
     private Set<Task> tasks = new HashSet<>();
 
     @Builder
     public Category(Integer id, String category, Set<Task> tasks) {
         super(id);
         this.category = category;
-
         if (tasks != null){
             this.tasks = tasks;
         }
@@ -31,7 +31,7 @@ public class Category extends BaseEntity {
 
     public Category addTasks(Task... tasks){
         for (Task task : tasks) {
-            task.getCategories().add(this);
+            task.setCategory(this);
             this.tasks.add(task);
         }
         return this;

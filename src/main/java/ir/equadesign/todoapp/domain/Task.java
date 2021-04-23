@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-@EqualsAndHashCode(callSuper = false, exclude = "categories")
+@EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,15 +17,15 @@ public class Task extends BaseEntity {
     private Boolean isDone = false;
     private String details;
 
-    @ManyToMany
-    @JoinTable(name = "Category_Task",
-            joinColumns = @JoinColumn(name = "Task_ID"),
-            inverseJoinColumns = @JoinColumn(name = "Category_ID"))
-    private Set<Category> categories = new HashSet<>();
+    @ManyToOne
+    private Category category;
 
     @Builder
-    public Task(int id,String details) {
+    public Task(Integer id, Boolean isDone, String details, Category category) {
         super(id);
+        this.isDone = isDone;
         this.details = details;
+        this.category = category;
     }
+
 }

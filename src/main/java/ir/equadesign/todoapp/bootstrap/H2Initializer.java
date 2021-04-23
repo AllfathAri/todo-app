@@ -9,6 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
+import java.util.List;
+
 @Profile("h2")
 @Component
 @RequiredArgsConstructor
@@ -29,14 +32,16 @@ public class H2Initializer implements CommandLineRunner {
 
         for (int i = 0; i < 10; i++) {
             var task = Task.builder().details("lorem ipsum dolor").build();
-            task.getCategories().add(allCategory);
+            allCategory.addTasks(task);
             taskRepository.save(task);
         }
 
         for (int i = 0; i < 10; i++) {
             var task = Task.builder().details("lorem ipsum dolor").build();
-            task.getCategories().add(importantCategory);
+            importantCategory.addTasks(task);
             taskRepository.save(task);
         }
+
+        categoryRepository.saveAll(List.of(allCategory,importantCategory));
     }
 }
