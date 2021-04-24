@@ -2,8 +2,7 @@ package ir.equadesign.todoapp.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,23 +11,20 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Category extends BaseEntity {
+@Builder
+public class Category {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    private Integer id;
 
     private String category;
 
     @OneToMany
+    @Builder.Default
     private Set<Task> tasks = new HashSet<>();
 
-    @Builder
-    public Category(Integer id, String category, Set<Task> tasks) {
-        super(id);
-        this.category = category;
-        if (tasks != null){
-            this.tasks = tasks;
-        }
-    }
-
-    public Category addTasks(Task... tasks){
+    public Category addTasks(Task... tasks) {
         for (Task task : tasks) {
             task.setCategory(this);
             this.getTasks().add(task);

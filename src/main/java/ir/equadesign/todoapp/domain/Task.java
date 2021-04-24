@@ -12,7 +12,12 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Task extends BaseEntity {
+@Builder
+public class Task {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    private Integer id;
 
     private Boolean isDone;
     private String details;
@@ -20,12 +25,5 @@ public class Task extends BaseEntity {
     @ManyToOne
     private Category category;
 
-    @Builder
-    public Task(Integer id, Boolean isDone, String details, Category category) {
-        super(id);
-        this.isDone = isDone;
-        this.details = details;
-        this.category = category;
-    }
 
 }
