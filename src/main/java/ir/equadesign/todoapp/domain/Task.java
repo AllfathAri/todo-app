@@ -6,8 +6,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
-@EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,8 +20,6 @@ public class Task {
     private Boolean isDone;
     private String details;
 
-    @ManyToOne
-    private Category category;
 
 
 }

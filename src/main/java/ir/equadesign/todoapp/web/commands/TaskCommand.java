@@ -1,6 +1,5 @@
 package ir.equadesign.todoapp.web.commands;
 
-import ir.equadesign.todoapp.domain.Category;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,6 +12,5 @@ public class TaskCommand {
     @NotEmpty
     private String Details;
 
-    private Category category;
 
 }

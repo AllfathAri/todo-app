@@ -26,31 +26,28 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="col-12 bg-light mt-5 rounded-2 p-3 ">
-        <div class="mb-3">
-            <form th:object="${task}" th:action="@{/createTask/}" method="post">
-                <div class="row">
-                    <div class="col-6 input-group">
-                        <span class="input-group-text " id="before">#</span>
-                        <input th:field="*{details}" type="text" class="form-control" placeholder="Write Your New Task"
-                               aria-label="Input" aria-describedby="before">
-                    </div>
-                    <div class="col-4">
-                        <select th:field="*{category}" class="form-select" aria-label="Select Category" id="inputSelect">
-                            <option th:each="category : ${categories}" th:value="${category.category}" th:text="${category.category}"></option>
-                        </select>
-                    </div>
+<div class="container mb-5  mt-5" >
+    <div class="col-12 bg-light rounded-2 p-3 ">
+        <form th:object="${task}" th:action="@{/createTask/}" method="post"
+              class="row row-cols-md-auto g-2 align-items-center mt-2">
+            <div class="col-12 col-md-9">
+                <div class="input-group">
+                    <span class="input-group-text " id="before">#</span>
+                    <input th:field="*{details}" type="text" class="form-control" placeholder="Write Your New Task"
+                           aria-label="Input" aria-describedby="before">
                 </div>
-            </form>
+            </div>
+            <div class="col-12 col-md-3 d-grid">
+                <button class="btn btn-success" type="submit">Submit</button>
+            </div>
 
-        </div>
-        <table class="table table-striped text-center">
+        </form>
+
+        <table class="table table-striped text-center mt-4">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Task</th>
-                <th>Category</th>
                 <th>Is It Done?</th>
                 <th>Actions</th>
             </tr>
@@ -60,7 +57,6 @@
             <tr th:each="task : ${tasks}">
                 <td th:text="${task.id}">1</td>
                 <td th:text="${task.details}">Finish The Project</td>
-                <td th:text="${task.category}">Finish The Project</td>
                 <td th:text="${task.isDone}? 'Yes': 'No'">
 
                 </td>
@@ -82,6 +78,9 @@
     </div>
 </div>
 
+<footer class="bg-light text-center py-2">
+    <p class="text-muted align-middle ">All Rights Reserved</p>
+</footer>
 <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
