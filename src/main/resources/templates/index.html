@@ -28,12 +28,22 @@
 
 <div class="container">
     <div class="col-12 bg-light mt-5 rounded-2 p-3 ">
-        <div class="mb-3 d-flex">
-            <form action="" class="input-group">
-                <span class="input-group-text " id="before">#</span>
-                <input type="text" class="form-control" placeholder="Write Your New Task" aria-label="Input" aria-describedby="before">
-                <button type="submit" class="btn btn-success">Submit</button>
+        <div class="mb-3">
+            <form th:object="${task}" th:action="@{/createTask/}" method="post">
+                <div class="row">
+                    <div class="col-6 input-group">
+                        <span class="input-group-text " id="before">#</span>
+                        <input th:field="*{details}" type="text" class="form-control" placeholder="Write Your New Task"
+                               aria-label="Input" aria-describedby="before">
+                    </div>
+                    <div class="col-4">
+                        <select th:field="*{category}" class="form-select" aria-label="Select Category" id="inputSelect">
+                            <option th:each="category : ${categories}" th:value="${category.category}" th:text="${category.category}"></option>
+                        </select>
+                    </div>
+                </div>
             </form>
+
         </div>
         <table class="table table-striped text-center">
             <thead>
@@ -50,16 +60,21 @@
             <tr th:each="task : ${tasks}">
                 <td th:text="${task.id}">1</td>
                 <td th:text="${task.details}">Finish The Project</td>
+                <td th:text="${task.category}">Finish The Project</td>
                 <td th:text="${task.isDone}? 'Yes': 'No'">
 
                 </td>
                 <td th:if="${task.isDone}">
-                    <a th:href="@{'/undone/' + ${task.id}}" class="btn btn-sm btn-warning me-2" aria-label="Mark as done"><i class="fas fa-undo"></i></a>
-                    <a th:href="@{'/delete/' + ${task.id}}" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i class="fas fa-trash"></i></a>
+                    <a th:href="@{'/undone/' + ${task.id}}" class="btn btn-sm btn-warning me-2"
+                       aria-label="Mark as done"><i class="fas fa-undo"></i></a>
+                    <a th:href="@{'/delete/' + ${task.id}}" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i
+                            class="fas fa-trash"></i></a>
                 </td>
                 <td th:if="${!task.isDone}">
-                    <a th:href="@{'/done/' + ${task.id}}" class="btn btn-sm btn-success me-2" aria-label="Mark as done"><i class="fas fa-check"></i></a>
-                    <a th:href="@{'/delete/' + ${task.id}}" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i class="fas fa-trash"></i></a>
+                    <a th:href="@{'/done/' + ${task.id}}" class="btn btn-sm btn-success me-2" aria-label="Mark as done"><i
+                            class="fas fa-check"></i></a>
+                    <a th:href="@{'/delete/' + ${task.id}}" class="btn btn-sm btn-danger me-2" aria-label="Delete"><i
+                            class="fas fa-trash"></i></a>
                 </td>
             </tr>
             </tbody>

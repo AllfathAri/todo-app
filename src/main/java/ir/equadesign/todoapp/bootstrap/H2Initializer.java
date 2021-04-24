@@ -32,7 +32,7 @@ public class H2Initializer implements CommandLineRunner {
 
         for (int i = 0; i < 10; i++) {
             var task = Task.builder().details("lorem ipsum dolor").isDone(false).build();
-            allCategory.addTasks(task);
+             allCategory.addTasks(task);
             taskRepository.save(task);
         }
 

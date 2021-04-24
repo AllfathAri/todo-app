@@ -1,15 +1,18 @@
 package ir.equadesign.todoapp.web.controllers;
 
+import ir.equadesign.todoapp.domain.Task;
 import ir.equadesign.todoapp.repositories.CategoryRepository;
 import ir.equadesign.todoapp.repositories.TaskRepository;
+import ir.equadesign.todoapp.services.CategoryService;
 import ir.equadesign.todoapp.services.TaskService;
+import ir.equadesign.todoapp.web.commands.TaskCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.Set;
 
 @Controller
@@ -18,10 +21,14 @@ import java.util.Set;
 public class IndexController {
 
     private final TaskService taskService;
+    private final CategoryService categoryService;
 
     @GetMapping
     public ModelAndView index() {
-        return new ModelAndView("index").addObject("tasks", taskService.findAll());
+        return new ModelAndView("index")
+                .addObject("tasks", taskService.findAll())
+                .addObject("task",new TaskCommand())
+                .addObject("categories" , categoryService.findAll());
     }
 
     @GetMapping("/delete/{taskId}")
@@ -39,6 +46,14 @@ public class IndexController {
     @GetMapping("/done/{taskId}")
     public String doTask(@PathVariable String taskId){
         taskService.markAsDone(Integer.valueOf(taskId));
+        return "redirect:/index";
+    }
+
+    @PostMapping("createTask")
+    public String createTask(@Valid @ModelAttribute("task") TaskCommand taskCommand, BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return "redirect:/index";
+        taskService.createTaskCommand(taskCommand);
         return "redirect:/index";
     }
 }
