@@ -3,7 +3,7 @@ name: todo
 spec:
   env:
     - name: spring_profiles_active
-      value: production
+      value: h2
   image_pull_policy: Always
   port: 80
   source:
