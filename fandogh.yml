@@ -1,5 +1,5 @@
 kind: ExternalService
-name: equa-todo
+name: todo
 spec:
   image_pull_policy: Always
   port: 80
